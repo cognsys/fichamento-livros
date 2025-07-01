@@ -161,3 +161,94 @@ O **SQL-99 trouxe uma base comum para programação procedural**, mas **não eli
 - Bancos como **PostgreSQL** seguem o **PL/pgSQL**, mas também suportam outras linguagens (Python, JavaScript via PL/V8).
 
 Apesar das diferenças, o **core SQL permanece consistente**, e entender a lógica procedural (seja via padrão SQL-99 ou extensões) é essencial para desenvolvimento avançado em bancos de dados.
+
+
+### **Análise das Extensões Procedurais em Bancos de Dados Pós-SQL-99**
+
+A partir do **SQL:1999 (SQL-3)**, a linguagem SQL passou a incluir oficialmente recursos procedurais por meio do **SQL/PSM (Persistent Stored Modules)**, padronizando estruturas como **stored procedures, funções, triggers e controle de fluxo**. No entanto, os principais SGBDs continuaram a desenvolver suas próprias extensões, muitas vezes indo além do padrão.
+
+Vamos analisar como as versões mais recentes do SQL (SQL:2003, SQL:2008, SQL:2011, SQL:2016, SQL:2019) e os principais bancos de dados evoluíram em relação às extensões procedurais.
+
+---
+
+## **1. Evolução dos Padrões SQL Pós-1999**
+
+### **SQL:2003**
+- Introduziu **SQL/PSM Parte 2**, melhorando suporte a stored procedures.
+- Adicionou **SQL/OLAP** (operações analíticas) e **SQL/MED** (gerenciamento de dados externos).
+- **Recursos relevantes:**
+  - Melhorias em **triggers** (e.g., `INSTEAD OF` para views atualizáveis).
+  - Suporte a **funções de janela (window functions)** como `ROW_NUMBER()`, `RANK()`.
+
+### **SQL:2008**
+- Foco em **temporal databases** (dados temporais) e **tratamento de exceções**.
+- **Recursos relevantes:**
+  - `MERGE` statement (upsert em uma única operação).
+  - `TRY...CATCH` em alguns SGBDs (embora não totalmente padronizado).
+
+### **SQL:2011**
+- Aprimorou **temporal SQL** (suporte nativo a dados históricos).
+- **Recursos relevantes:**
+  - `PERIOD FOR` para definir intervalos temporais em tabelas.
+
+### **SQL:2016**
+- Grande avanço em **JSON** e **polimorfismo**.
+- **Recursos relevantes:**
+  - `JSON_TABLE`, `JSON_EXISTS` (consultas JSON diretamente no SQL).
+  - **Procedural JSON processing** (funções para manipular JSON em PL/SQL, T-SQL, etc.).
+
+### **SQL:2019**
+- Introduziu **grafos** e **padrões de consulta mais avançados**.
+- **Recursos relevantes:**
+  - `MATCH_RECOGNIZE` (padrões complexos em séries temporais).
+  - Suporte a **grafos** (consultas em relacionamentos complexos).
+
+---
+
+## **2. Extensões Procedurais nos Principais SGBDs**
+
+### **Oracle (PL/SQL)**
+- **Versões recentes (21c, 23c)** adicionaram:
+  - **JSON enhancements** (`JSON_TRANSFORM`, `JSON_DATAGUIDE`).
+  - **SQL Macros** (funções que expandem em tempo de compilação).
+  - **Blockchain tables** (tabelas imutáveis).
+
+### **Microsoft SQL Server (T-SQL)**
+- **SQL Server 2022** trouxe:
+  - **Inteligência Artificial integrada** (consultas com IA via `PREDICT`).
+  - **Parquet nativo** (leitura/escrita direta de arquivos Parquet).
+  - **GraphQL over T-SQL** (experimental).
+
+### **PostgreSQL (PL/pgSQL e outras linguagens)**
+- **PostgreSQL 15+** suporta:
+  - **Procedural JSON (SQL/JSON Path)** – similar ao Oracle.
+  - **Stored procedures em múltiplas linguagens** (Python, JavaScript via PL/V8).
+  - **MERGE command** (finalmente implementado).
+
+### **MySQL (SQL/PSM Parcial + Extensões)**
+- **MySQL 8.0+** inclui:
+  - **Window functions** (padrão SQL:2003).
+  - **Common Table Expressions (CTEs)** recursivas.
+  - **JSON enhancements** (`JSON_TABLE`, `JSON_OVERLAPS`).
+
+---
+
+## **3. Tendências e Conclusão**
+
+### **Padrão vs. Extensões Proprietárias**
+- O **SQL padrão (ANSI/ISO)** avança, mas os SGBDs ainda priorizam **extensões proprietárias** por:
+  - **Performance** (otimizações específicas do banco).
+  - **Recursos exclusivos** (e.g., PL/SQL com Blockchain tables, T-SQL com IA).
+
+### **Tendências Recentes**
+1. **SQL + JSON** → Bancos relacionais incorporando NoSQL.
+2. **SQL + Machine Learning** → Funções analíticas avançadas (e.g., SQL Server com `PREDICT`).
+3. **SQL + Grafos** → Consultas em redes complexas (SQL:2019).
+
+### **Recomendação para Desenvolvedores**
+- **Se aprofundar no SQL padrão (SQL:2016/2019)** para consultas modernas (JSON, temporal, grafos).
+- **Aprender a extensão procedural do seu SGBD principal** (PL/SQL, T-SQL, PL/pgSQL).
+- **Ficar atento a integrações com IA e big data** (e.g., SQL Server + Spark, Oracle + JSON).
+
+**Conclusão:**
+Apesar dos avanços nos padrões SQL, as **extensões procedurais proprietárias continuam dominando** devido à sua integração profunda com os motores de banco de dados. No entanto, recursos modernos como **JSON, grafos e machine learning** estão sendo incorporados tanto no padrão quanto nas extensões, mantendo o SQL relevante na era dos dados complexos.
